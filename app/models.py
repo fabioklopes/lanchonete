@@ -1,5 +1,9 @@
 from django.db import models
 
+def gerar_codigo_cliente(tamanho=10): 
+    caracteres = string.ascii_uppercase + string.digits 
+    return ''.join(secrets.choice(caracteres) for _ in range(tamanho))
+
 class Customer(models.Model):
     """
     Customer
@@ -12,7 +16,7 @@ class Customer(models.Model):
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
         
-    customer_code = models.CharField(max_length=20, null=False, blank=False, unique=True, verbose_name='Código de Cliente')
+    customer_code = models.CharField(max_length=10, null=False, blank=False, unique=True, verbose_name='Código de Cliente')
     first_name = models.CharField(max_length=20, null=False, blank=False, verbose_name='Primeiro Nome')
     last_name = models.CharField(max_length=30, null=False, blank=False, verbose_name='Restante do nome')
     email = models.EmailField(max_length=50, null=False, blank=False, verbose_name='E-mail')
@@ -21,6 +25,11 @@ class Customer(models.Model):
     neighborhood = models.CharField(max_length=50, null=False, blank=False, verbose_name='Bairro')
     registration_date = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True, verbose_name='Cliente Ativo')
+    
+    def save(self, *args, **kwargs): 
+        if not self.customer_code: 
+            self.customer_code = gerar_codigo_cliente(10)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name} ({self.customer_code})'

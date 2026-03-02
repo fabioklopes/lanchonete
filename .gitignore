@@ -1,8 +1,21 @@
-# Pastas
+# Ambiente virtual
+venv/
 virtual/
-.vscode
-.idea
 
-# Arquivos
+# Configurações de IDE
+.vscode/
+.idea/
+
+# Arquivos de ambiente
 .env
-.pyc
+
+# Arquivos compilados Python
+*.pyc
+__pycache__/
+
+# Arquivos de mídia (uploads)
+media/
+cardapio/
+
+# Arquivos de log
+*.log
