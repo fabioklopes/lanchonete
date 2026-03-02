@@ -12,18 +12,18 @@ class Customer(models.Model):
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
         
+    customer_code = models.CharField(max_length=20, null=False, blank=False, unique=True, verbose_name='Código de Cliente')
     first_name = models.CharField(max_length=20, null=False, blank=False, verbose_name='Primeiro Nome')
     last_name = models.CharField(max_length=30, null=False, blank=False, verbose_name='Restante do nome')
     email = models.EmailField(max_length=50, null=False, blank=False, verbose_name='E-mail')
     phone_number = models.CharField(max_length=11, null=False, blank=False, verbose_name='WhatsApp')
     address = models.CharField(max_length=100, null=False, blank=False, verbose_name='Endereço')
     neighborhood = models.CharField(max_length=50, null=False, blank=False, verbose_name='Bairro')
-    username = models.CharField(max_length=20, null=False, blank=False, unique=True, verbose_name='Nome de usuário')
     registration_date = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True, verbose_name='Cliente Ativo')
 
     def __str__(self):
-        return f'{self.first_name} {self.last_name}'
+        return f'{self.first_name} {self.last_name} ({self.customer_code})'
 
 
 class Group(models.Model):
@@ -253,7 +253,7 @@ class Delivery(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, null=False, blank=False, verbose_name='Pedido')
     delivery_start = models.DateTimeField(auto_now_add=True, verbose_name='Início da Entrega')
     delivery_end = models.DateTimeField(null=True, blank=True, verbose_name='Fim da Entrega')
-    delivery_status = models.CharField(max_length=1, choices=STATUS_CHOICES, null=False, blank=False, verbose_name='Status da Entrega')
+    delivery_status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='P', verbose_name='Status da Entrega')
     delivery_driver = models.ForeignKey(Delivery_Driver, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Entregador')
 
     def __str__(self):
