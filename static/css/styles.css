@@ -3,11 +3,17 @@
     color: #ff5100;
 }
 
-.navbar-nav .nav-item:hover {
-  transform: scale(1.15);
-  transition: 0.3s ease; /* Aumenta o tamanho em 15% */
-}
-
 h1 {
     color: #444;
+}
+
+.card-body {
+    height: 200px;
+    max-height: 200px;
+    align-items: center;
+}
+
+.card-body:hover {
+    background-color: #b0ea7d;
+    transition: 0.3s;
 }

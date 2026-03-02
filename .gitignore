@@ -3,8 +3,6 @@ virtual/
 .vscode
 .idea
 
-
-
 # Arquivos
 .env
 .pyc
