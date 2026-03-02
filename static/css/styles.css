@@ -1,10 +1,14 @@
+h1 {
+    color: #444;
+}
+
 .nav-item a:hover {
     font-weight: 500;
     color: #ff5100;
 }
 
-h1 {
-    color: #444;
+.nav-item a:active {
+    color: #fff;
 }
 
 .card-body {
@@ -14,6 +18,7 @@ h1 {
 }
 
 .card-body:hover {
-    background-color: #b0ea7d;
-    transition: 0.3s;
+    background-color: #bcff81;
+    transition: 0.5s;
 }
+
